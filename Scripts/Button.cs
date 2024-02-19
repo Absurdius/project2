@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Implement the interface in a script
 public class Button : MonoBehaviour, Interactable
 {
     private Animator animator;
+    public Triggerable triggerable;
 
     private void Start()
     {
@@ -14,6 +14,7 @@ public class Button : MonoBehaviour, Interactable
         {
             Debug.LogError("Animator component not found on " + gameObject.name);
         }
+        triggerable = gameObject.GetComponent<Triggerable>();
     }
 
     public void Interact()
@@ -22,6 +23,12 @@ public class Button : MonoBehaviour, Interactable
         {
             Debug.Log("Play animation");
             animator.SetTrigger("InteractTrigger");
+        }
+
+        if(triggerable != null)
+        {
+            triggerable.Trigger();
+            Debug.Log("Trigger Triggerable");
         }
     }
 }
