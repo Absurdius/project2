@@ -10,6 +10,7 @@ public class FirstPersonController : MonoBehaviour
     public float rotationSpeed = 2f;
     public float jumpForce = 5f;
     public float upDownRange = 60f;
+    public static bool canMove { get; set; }
 
     private CharacterController characterController;
     private Vector3 gravityDirection = Vector3.down; // Initial gravity direction
@@ -18,15 +19,19 @@ public class FirstPersonController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        characterController.radius = 1.0f;
+        canMove = true;
     }
 
     void Update()
     {
-        HandleMovementInput();
-        HandleRotation();
+        if (canMove)
+        {
+            HandleMovementInput();
+            HandleRotation();
+        }
     }
 
     void HandleMovementInput()
@@ -82,4 +87,5 @@ public class FirstPersonController : MonoBehaviour
     {
         gravityDirection = direction;
     }
+
 }

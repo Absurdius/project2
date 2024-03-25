@@ -10,6 +10,8 @@ public class GravityRotation : MonoBehaviour, Triggerable
 
     private float rotationDuration;
 
+    public bool rotateClockwise;
+
     private Vector3 rotationAxis = Vector3.forward;
 
     private GameObject rotatingObject;
